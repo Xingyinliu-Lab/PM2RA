@@ -1,0 +1,7 @@
+Bifidobacterium_animalis
+Lactococcus_lactis
+Prevotella_fusca
+Megasphaera_elsdenii
+Roseburia_hominis
+Enterococcus_faecalis
+Ruminococcus_bicirculans
