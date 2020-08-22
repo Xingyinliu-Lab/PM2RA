@@ -3,7 +3,8 @@ import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
 import copy
-
+import warnings
+warnings.filterwarnings("ignore")
 
 
 def set_axis_style(ax, labels):
@@ -64,6 +65,8 @@ def plot_scatter_exe(project_dict,filter_ss,taxalist_plot,scattertype):
     gmean = ilr_data[genuslist].mean(axis=1)
     ilr_data[genuslist] = ilr_data[genuslist].subtract(gmean, axis='rows')
     def plot_scatter():
+        if len(taxalist)==0:
+            return None
         with PdfPages(image_pdf) as pdf:
             for taxa in taxalist:
                 fig= plt.figure(figsize=(20,10.5))
@@ -167,6 +170,8 @@ def plot_t_squared_exe(project_dict,filter_ss,taxalist_plot,scattertype):
     gmean = ilr_data[genuslist].mean(axis=1)
     ilr_data[genuslist] = ilr_data[genuslist].subtract(gmean, axis='rows')
     def plot_t_squared():
+        if len(taxalist)==0:
+            return None
         with PdfPages(image_pdf) as pdf:
             for taxa in taxalist:
                 cc, ct, tt, tc, cc_kde, ct_kde, tt_kde, tc_kde = None, None, None, None, None, None, None, None
@@ -293,6 +298,8 @@ def plot_scatter_and_tsquared_exe(project_dict,filter_ss,taxalist_plot,scatterty
     ilr_data[genuslist] = ilr_data[genuslist].subtract(gmean, axis='rows')
 
     def plot_scatter_and_tsquared():
+        if len(taxalist)==0:
+            return None
         with PdfPages(image_pdf) as pdf:
             for taxa in taxalist:
                 cc, ct, tt, tc, cc_kde, ct_kde, tt_kde, tc_kde = None, None, None, None, None, None, None, None

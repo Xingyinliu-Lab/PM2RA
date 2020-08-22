@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>PM2RA@XYL_Lab</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../colormaps.png</normaloff>../colormaps.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
@@ -1464,7 +1468,7 @@
        <widget class="QCheckBox" name="checkBox_3">
         <property name="geometry">
          <rect>
-          <x>390</x>
+          <x>420</x>
           <y>20</y>
           <width>201</width>
           <height>16</height>
@@ -1484,7 +1488,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Plot the taxa scatter chart</string>
+         <string>Plot the taxa abundance chart</string>
         </property>
        </widget>
        <widget class="QCheckBox" name="checkBox">
@@ -1686,13 +1690,13 @@
          </rect>
         </property>
         <property name="text">
-         <string>Plot the taxa scatter chart</string>
+         <string>Plot the taxa abundance chart</string>
         </property>
        </widget>
        <widget class="QCheckBox" name="checkBox_8">
         <property name="geometry">
          <rect>
-          <x>360</x>
+          <x>380</x>
           <y>10</y>
           <width>201</width>
           <height>16</height>

@@ -22,8 +22,11 @@ import pm_score_nD_exe
 from time import strftime
 import pm_score_2D_exe
 import subprocess
-# path = getattr(sys, '_MEIPASS', os.getcwd())
-# os.chdir(path)
+import warnings
+warnings.filterwarnings("ignore")
+
+path = getattr(sys, '_MEIPASS', os.getcwd())
+os.chdir(path)
 
 
 s = platform.uname()
@@ -34,7 +37,6 @@ cpu_count = multiprocessing.cpu_count()
 
 class query_window(QMainWindow):
     def __init__(self):
-        print(sys.executable)
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -100,6 +102,7 @@ class query_window(QMainWindow):
 
         self.ui.checkBox_8.setDisabled(True)
         self.ui.checkBox_7.setDisabled(True)
+        self.ui.checkBox_6.setChecked(False)
         self.ui.checkBox_6.setDisabled(True)
 
 
@@ -152,7 +155,7 @@ class query_window(QMainWindow):
                 plotscatter=self.ui.checkBox_4.isChecked()
                 plotts = self.ui.checkBox_5.isChecked()
                 scattertype = self.ui.comboBox_21.currentText()
-                print(filter_ss,topnum,plotscatter,plotts,scattertype)
+                # print(filter_ss,topnum,plotscatter,plotts,scattertype)
                 if (not plotscatter) and (not plotts):
                     self.ui.textEdit.setText(
                         'Please check the plot type.')
@@ -306,6 +309,10 @@ class query_window(QMainWindow):
                         'Please check the plot type.')
                     return None
                 if plotpm:
+                    if len(taxalist_plot)<3:
+                        self.ui.textEdit.setText(
+                            'The taxa number is too less for network plotting.')
+                        return None
                     network_plot_ontaxa_exe.plotPMnetwork(project_dict, taxalist_plot, networktype, edgecolormap, nodecolormap,
                                                    networklayout, filter_ss)
                     setting_str = project_dict.get('loggs')
@@ -511,6 +518,8 @@ class query_window(QMainWindow):
                 self.ui.lineEdit_16.setText(project_dict.get('controllabel'))
                 self.ui.lineEdit_15.setText(project_dict.get('treatlabel'))
                 self.ui.textEdit.setText(project_dict.get('loggs'))
+                self.ui.listWidget_3.clear()
+                self.ui.listWidget_4.clear()
             except:
                 self.ui.textEdit.setText('Project loads failed. Please check the input pm file.')
 
@@ -704,12 +713,14 @@ class query_window(QMainWindow):
                 self.ui.checkBox_8.setDisabled(True)
                 self.ui.checkBox_7.setDisabled(True)
             if listItemsCount<=2:
-                self.ui.checkBox_6.setDisabled(False)
+                self.ui.checkBox_6.setChecked(False)
+                self.ui.checkBox_6.setDisabled(True)
+
         except:
             pass
         return None
     def about_pm(self):
-        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "source/About_pm.html"))
+        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "source/About_PM.html"))
         local_url = QUrl.fromLocalFile(file_path)
         QDesktopServices.openUrl(local_url)
 
@@ -931,16 +942,12 @@ class query_window(QMainWindow):
         # fileplace, logs_place, datafilename, minimum_coexist_taxa_num, minimum_taxa_detection_num, minimum_taxa_abundance_median,
 
         if self.ui.comboBox_7.currentText() == 'ON':
-            # print(sys.executable)
-            # print(os.path.realpath(sys.argv[0]))
-            # print(sys.argv[0])
-            # relpath=os.path.dirname(os.path.realpath(__file__))
-            # print(relpath)
+            # this cmd_str should be modified to ./python.exe in the distributed exe
             cmd_str="python pm_score_2D_multi_thread_exe.py "+fileplace+' '+logs_place+' '+datafilename+' '+ \
                       str(minimum_coexist_taxa_num)+' '+str(minimum_taxa_detection_num)+ \
                       ' ' + str(minimum_taxa_abundance_median) +' '+control_label+' '+treat_label \
                     +' '+group_label+' '+str(threads_count)+' '+fdr+' '+ilr+' '+str(confidence_level)+' '+autoBand+' '+kernel_str
-            # print(cmd_str)
+            print(cmd_str)
             self.ui.thread_1 = Worker(logs_place,threads_count)
             self.ui.thread_1.progressBarValue.connect(self.pm_run_pbar)
             self.ui.thread_1.start()
@@ -959,7 +966,7 @@ class query_window(QMainWindow):
                       str(minimum_coexist_taxa_num)+' '+str(minimum_taxa_detection_num)+ \
                       ' ' + str(minimum_taxa_abundance_median) +' '+control_label+' '+treat_label \
                     +' '+group_label+' '+fdr+' '+ilr+' '+str(confidence_level)+' '+autoBand+' '+kernel_str
-            # print(cmd_str)
+            print(cmd_str)
             self.ui.thread_1 = Worker(logs_place,0)
             self.ui.thread_1.progressBarValue.connect(self.pm_run_pbar)
             self.ui.thread_1.start()
@@ -1282,8 +1289,8 @@ class Worker2(QThread):
         super(Worker2, self).__init__()
         self.cmd_str = cmd_str
     def run(self):
-        # subprocess.call(self.cmd_str,shell=True)
-        os.system(self.cmd_str)
+        # subprocess.call(self.cmd_str,shell=False)
+        subprocess.call(self.cmd_str,shell=True)
         self.trigger.emit(self.cmd_str)#
 
 class Worker4(QThread):

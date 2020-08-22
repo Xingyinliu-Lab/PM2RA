@@ -9,7 +9,8 @@ import fdrcorrection
 import load_save_project
 import sys
 np.seterr(divide='ignore',invalid='ignore')
-
+import warnings
+warnings.filterwarnings("ignore")
 def pm_score_2d(fileplace,logs_place,datafilename,minimum_coexist_taxa_number,minimum_taxa_number,minimum_taxa_prevlance,control,treat,condition,fdr,ilr,confidence_level,wetherFindBestBandwidth,kernel_str):
 
     minimum_coexist_taxa_number=int(minimum_coexist_taxa_number)

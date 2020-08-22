@@ -9,6 +9,8 @@ import fdrcorrection
 import load_save_project
 import sys
 import copy
+import warnings
+warnings.filterwarnings("ignore")
 np.seterr(divide='ignore',invalid='ignore')
 fileplace=sys.argv[1]
 logs_place=sys.argv[2]

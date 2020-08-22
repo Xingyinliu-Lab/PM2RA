@@ -16,7 +16,8 @@ from warnings import warn
 
 
 from scipy.spatial import distance_matrix
-
+import warnings
+warnings.filterwarnings("ignore")
 
 
 

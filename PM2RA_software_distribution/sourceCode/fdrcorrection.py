@@ -1,5 +1,6 @@
 import numpy as np
-
+import warnings
+warnings.filterwarnings("ignore")
 def _ecdf(x):
     '''no frills empirical cdf used in fdrcorrection
     '''

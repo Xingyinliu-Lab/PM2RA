@@ -5,7 +5,8 @@ import pandas as pd
 
 from matplotlib import cm
 from matplotlib.colors import ListedColormap
-
+import warnings
+warnings.filterwarnings("ignore")
 def plotPMnetwork(project_dict,taxalist_plot,networktype,edgecolormap,nodecolormap,networklayout,filter_ss):
     fileplace = project_dict.get('fileplace')
     fdr = project_dict.get('fdr')

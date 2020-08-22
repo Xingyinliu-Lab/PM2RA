@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
-
+import warnings
+warnings.filterwarnings("ignore")
 
 def save_dict(filename, dic):
     '''save dict into json file'''

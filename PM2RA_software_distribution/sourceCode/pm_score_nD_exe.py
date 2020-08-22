@@ -14,7 +14,8 @@ import copy
 np.seterr(divide='ignore',invalid='ignore')
 from scipy.spatial import distance_matrix
 from PCoA import pcoa
-
+import warnings
+warnings.filterwarnings("ignore")
 def set_axis_style(ax, labels):
     ax.get_xaxis().set_tick_params(direction='out')
     ax.xaxis.set_ticks_position('bottom')
@@ -264,8 +265,8 @@ def plot_scatter_and_tsquared_nd_exe(fileplace,datafilename,control,treat,condit
                 treat_a = np.transpose(np.asarray(treat_a['PC1']))
                 ax2.scatter(control_a, control_b, color='red', label=control_label)
                 ax2.scatter(treat_a, treat_b, color='green', label=treat_label)
-                ax2.set_xlabel('PC2')
-                ax2.set_ylabel('PC1')
+                ax2.set_xlabel('PCoA1')
+                ax2.set_ylabel('PCoA2')
                 ax2.legend()
                 nstd = 2
                 cov = np.cov(control_a, control_b)

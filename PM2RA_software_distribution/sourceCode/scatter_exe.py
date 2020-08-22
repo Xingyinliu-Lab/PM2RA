@@ -4,7 +4,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
 import copy
 from matplotlib.patches import Ellipse
-
+import warnings
+warnings.filterwarnings("ignore")
 
 # resfilename='D:\\project\\exe\\pm\\Project\\ASD2_3\\PM_scores.csv'
 # pm_res=pd.read_csv(resfilename,header=0,index_col=0)
@@ -100,6 +101,8 @@ def plot_scatter_exe(project_dict,topnum,networktype,filter_ss):
     gmean = ilr_data[genuslist].mean(axis=1)
     ilr_data[genuslist] = ilr_data[genuslist].subtract(gmean, axis='rows')
     def plot_scatter():
+        if len(pm_res)==0:
+            return None
         with PdfPages(image_pdf) as pdf:
             for pmi in pm_res.index:
                 taxa1=pm_res.loc[pmi,'taxa1']
@@ -247,6 +250,8 @@ def plot_t_squared_exe(project_dict, topnum, networktype, filter_ss):
     gmean = ilr_data[genuslist].mean(axis=1)
     ilr_data[genuslist] = ilr_data[genuslist].subtract(gmean, axis='rows')
     def plot_t_squared():
+        if len(pm_res)==0:
+            return None
         with PdfPages(image_pdf) as pdf:
             for pmi in pm_res.index:
                 taxa1=pm_res.loc[pmi,'taxa1']
@@ -395,6 +400,8 @@ def plot_scatter_and_tsquared_exe(project_dict, topnum, networktype, filter_ss):
     gmean = ilr_data[genuslist].mean(axis=1)
     ilr_data[genuslist] = ilr_data[genuslist].subtract(gmean, axis='rows')
     def plot_scatter_and_tsquared():
+        if len(pm_res)==0:
+            return None
         with PdfPages(image_pdf) as pdf:
             for pmi in pm_res.index:
                 taxa1 = pm_res.loc[pmi, 'taxa1']

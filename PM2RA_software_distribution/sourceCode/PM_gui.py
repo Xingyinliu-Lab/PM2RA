@@ -8,13 +8,17 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import warnings
+warnings.filterwarnings("ignore")
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(975, 600)
         MainWindow.setMaximumSize(QtCore.QSize(975, 600))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("source/511.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
@@ -490,7 +494,7 @@ class Ui_MainWindow(object):
         self.label_29.setFont(font)
         self.label_29.setObjectName("label_29")
         self.checkBox_3 = QtWidgets.QCheckBox(self.tab_6)
-        self.checkBox_3.setGeometry(QtCore.QRect(390, 20, 201, 16))
+        self.checkBox_3.setGeometry(QtCore.QRect(420, 20, 201, 16))
         self.checkBox_3.setObjectName("checkBox_3")
         self.checkBox_2 = QtWidgets.QCheckBox(self.tab_6)
         self.checkBox_2.setGeometry(QtCore.QRect(190, 20, 201, 16))
@@ -559,7 +563,7 @@ class Ui_MainWindow(object):
         self.checkBox_7.setGeometry(QtCore.QRect(160, 10, 201, 16))
         self.checkBox_7.setObjectName("checkBox_7")
         self.checkBox_8 = QtWidgets.QCheckBox(self.tab_7)
-        self.checkBox_8.setGeometry(QtCore.QRect(360, 10, 201, 16))
+        self.checkBox_8.setGeometry(QtCore.QRect(380, 10, 201, 16))
         self.checkBox_8.setObjectName("checkBox_8")
         self.comboBox_18 = QtWidgets.QComboBox(self.tab_7)
         self.comboBox_18.setGeometry(QtCore.QRect(730, 50, 181, 31))
@@ -984,7 +988,7 @@ class Ui_MainWindow(object):
         self.comboBox_14.setItemText(17, _translate("MainWindow", "Yellow-green"))
         self.label_29.setText(_translate("MainWindow", "Node color map:"))
         self.checkBox_3.setText(_translate("MainWindow", "Plot the T-squared statistics"))
-        self.checkBox_2.setText(_translate("MainWindow", "Plot the taxa scatter chart"))
+        self.checkBox_2.setText(_translate("MainWindow", "Plot the taxa abundance chart"))
         self.checkBox.setText(_translate("MainWindow", "Plot the PM network"))
         self.comboBox_15.setItemText(0, _translate("MainWindow", "2D PM Scores"))
         self.comboBox_15.setItemText(1, _translate("MainWindow", "Interaction PM scores"))
@@ -1001,7 +1005,7 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_6), _translate("MainWindow", "Plot PM network with top PM scores"))
         self.pushButton_8.setText(_translate("MainWindow", "Plot"))
         self.checkBox_6.setText(_translate("MainWindow", "Plot the PM network"))
-        self.checkBox_7.setText(_translate("MainWindow", "Plot the taxa scatter chart"))
+        self.checkBox_7.setText(_translate("MainWindow", "Plot the taxa abundance chart"))
         self.checkBox_8.setText(_translate("MainWindow", "Plot the T-squared statistics"))
         self.comboBox_18.setItemText(0, _translate("MainWindow", "Greys"))
         self.comboBox_18.setItemText(1, _translate("MainWindow", "Purples"))
