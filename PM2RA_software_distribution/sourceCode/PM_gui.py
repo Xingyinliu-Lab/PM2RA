@@ -1071,7 +1071,7 @@ class Ui_MainWindow(object):
         self.comboBox_10.setItemText(1, _translate("MainWindow", "OFF"))
         self.comboBox_11.setItemText(0, _translate("MainWindow", "ON"))
         self.comboBox_11.setItemText(1, _translate("MainWindow", "OFF"))
-        self.label_23.setText(_translate("MainWindow", "Wether Find Best Bandwidth:"))
+        self.label_23.setText(_translate("MainWindow", "Automated Best Bandwidth:"))
         self.label_24.setText(_translate("MainWindow", "ilr transform:"))
         self.pushButton_12.setText(_translate("MainWindow", "RUN"))
         self.pushButton_14.setText(_translate("MainWindow", "RESET"))
