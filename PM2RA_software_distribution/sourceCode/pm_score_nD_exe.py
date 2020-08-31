@@ -141,7 +141,10 @@ def cal_pm_score_nd(datafilename,control,treat,condition,ilr,wetherFindBestBandw
         if g != condition:
             genuslist.append(g)
     demodata=demodata[genuslist+list([condition])]
-    pm_score,pvalue,cc,ct,tt,tc,cc_kde,ct_kde,tt_kde,tc_kde=cal_pm_socre_nD(module_taxa,demodata)
+    try:
+        pm_score,pvalue,cc,ct,tt,tc,cc_kde,ct_kde,tt_kde,tc_kde=cal_pm_socre_nD(module_taxa,demodata)
+    except:
+        return None, None, None, None, None, None, None, None, None, None
     return pm_score,pvalue,cc,ct,tt,tc,cc_kde,ct_kde,tt_kde,tc_kde
 
 def plot_pm_score_nd(fileplace,datafilename,control,treat,condition,module_taxa,pm_score,pvalue,cc,ct,tt,tc,cc_kde,ct_kde,tt_kde,tc_kde):
