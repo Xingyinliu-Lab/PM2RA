@@ -83,5 +83,5 @@ python PM_Analysis.py demo_data/ demo_data/logs/ demo_data/demodata_small.csv 15
 ### Multi-processing PM2RA in linux platform
 ```python
 source activate PM2RA # use pipenv shell in python env
-python PM_Analysis.py demo_data/ demo_data/logs/ demo_data/demodata_small.csv 15 10 0 H2029 crc condition ON ON 0.95 ON gaussian 
+python PM_Analysis_multiprocessing.py demo_data/ demo_data/logs/ demo_data/demodata_small.csv 15 10 0 H2029 crc condition 6 ON ON 0.95 ON gaussian 
 ```
